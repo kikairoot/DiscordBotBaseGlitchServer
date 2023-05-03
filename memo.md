@@ -1,5 +1,29 @@
 # 作るにあたっての参考資料やその手順などの記録
 
+## Glitchプロジェクト作成
+1\. 右上のNew projecからFind Moreをクリック
+2\. Hello Nodeのリンクをクリック
+
+## discord.js 13.x 対応
+clientインスタンスの取得方法が変わったため、
+以下のような修正が必要（v14.xでさらに変更されているようなので、それに合った修正が必要）
+
++ 修正前
+```
+const discord = require('discord.js');
+const client = new discord.Client();
+```
+
++ 修正後
+```
+const { Client, Intents } = require('discord.js');
+
+const client = new Client({
+  intents: [Intents.FLAGS.DIRECT_MESSAGES, Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MEMBERS, Intents.FLAGS.GUILD_MESSAGE_TYPING] 
+  ,partials: ['MESSAGE', 'CHANNEL', 'REACTION', 'USER']
+});
+```
+
 ## Glitch / github 連携
 Glitchに記述したコードをGitHubに連携を行い、コードの管理を行う
 ### 参考資料
