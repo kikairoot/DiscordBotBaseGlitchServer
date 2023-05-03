@@ -18,11 +18,18 @@ const client = new discord.Client();
 ```
 const { Client, Intents } = require('discord.js');
 
+// intents 操作権限
+// partials 操作を行う対象
 const client = new Client({
   intents: [Intents.FLAGS.DIRECT_MESSAGES, Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MEMBERS, Intents.FLAGS.GUILD_MESSAGE_TYPING] 
   ,partials: ['MESSAGE', 'CHANNEL', 'REACTION', 'USER']
 });
 ```
+### 参考資料
++ [Gateway Intents を指定するサンプル]([https://scrapbox.io/discordjs-](https://scrapbox.io/discordjs-japan/Gateway_Intents_%E3%82%92%E6%8C%87%E5%AE%9A%E3%81%99%E3%82%8B%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AB) "Gateway Intents を指定するサンプル")
++ [Gateway Intentsの指定が必要になった]([https://scrapbox.io/discordjs-](https://scrapbox.io/discordjs-japan/Gateway_Intents%E3%81%AE%E6%8C%87%E5%AE%9A%E3%81%8C%E5%BF%85%E8%A6%81%E3%81%AB%E3%81%AA%E3%81%A3%E3%81%9F) "Gateway Intentsの指定が必要になった")
++ [Intentsに指定できる値](https://discord.js.org/#/docs/discord.js/v13/class/Intents "Intents")
++ [partialsに指定できる値](https://discord.js.org/#/docs/discord.js/v13/typedef/PartialType "PartialType")
 
 ## Glitch / github 連携
 Glitchに記述したコードをGitHubに連携を行い、コードの管理を行う
