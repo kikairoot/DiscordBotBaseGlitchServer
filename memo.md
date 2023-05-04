@@ -31,6 +31,36 @@ const client = new Client({
 + [Intentsに指定できる値](https://discord.js.org/#/docs/discord.js/v13/class/Intents "Intents")
 + [partialsに指定できる値](https://discord.js.org/#/docs/discord.js/v13/typedef/PartialType "PartialType")
 
+## discord.js 14.x 対応(v13.x -> v14.x)
+Glitchのライブラリv14.xに対応していたため変更することにした
+
+1. package.jsonを選択
+2. 上メニューのADD PACKAGEをクリックして、出てきたメニューからdiscord.jsの最新のものを選択
+3. コードを修正（Clientインスタンス作成まわり）
+```
+const { 
+  Client,
+  GatewayIntentBits
+} = require('discord.js');
+
+// intents 操作権限
+// partials 操作を行う対象
+const client = new Client({
+  intents: [
+    GatewayIntentBits.DirectMessages, 
+    GatewayIntentBits.Guilds, 
+    GatewayIntentBits.GuildMessages, 
+    GatewayIntentBits.GuildMembers, 
+    GatewayIntentBits.GuildMessageTyping
+  ],
+  partials: ['MESSAGE', 'CHANNEL', 'REACTION', 'USER']
+});
+```
+### 参考資料
++ [Gateway Intents を指定するサンプル](https://scrapbox.io/discordjs-japan/Gateway_Intents_%E3%82%92%E6%8C%87%E5%AE%9A%E3%81%99%E3%82%8B%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AB "Gateway Intents を指定するサンプル")
++ [discord.jsのバージョンを13から14に移行する](https://qiita.com/tonnatorn/items/106fa502272196780e6b "discord.jsのバージョンを13から14に移行する")
+
+
 ## Glitch / github 連携
 Glitchに記述したコードをGitHubに連携を行い、コードの管理を行う
 ### 参考資料
