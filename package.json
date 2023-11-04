@@ -11,9 +11,10 @@
   },
   "dependencies": {
     "express": "^4.18.2",
-    "discord.js": "^13.13.1",
+    "discord.js": "^14.10.2",
     "querystring": "^0.2.1",
-    "npm": "^9.5.1"
+    "npm": "^9.6.6",
+    "@discordjs/builders": "^1.6.3"
   },
   "engines": {
     "node": "16.x"
