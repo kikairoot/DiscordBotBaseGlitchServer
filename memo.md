@@ -60,6 +60,43 @@ const client = new Client({
 + [Gateway Intents を指定するサンプル](https://scrapbox.io/discordjs-japan/Gateway_Intents_%E3%82%92%E6%8C%87%E5%AE%9A%E3%81%99%E3%82%8B%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AB "Gateway Intents を指定するサンプル")
 + [discord.jsのバージョンを13から14に移行する](https://qiita.com/tonnatorn/items/106fa502272196780e6b "discord.jsのバージョンを13から14に移行する")
 
+## discord.js のバージョンアップによるNode.jsの依存バージョン対応(v14.x -> v14.x)
+GlitchのNode.jsがv16.14.2のままアップデートされていないため、
+npmアップデートでライブラリをアップデートしたら動かなくなってしまった。
+```
+/app/node_modules/undici/lib/web/fetch/response.js:530
+  ReadableStream
+  ^
+ReferenceError: ReadableStream is not defined
+    at Object.<anonymous> (/app/node_modules/undici/lib/web/fetch/response.js:530:3)
+    at Module._compile (node:internal/modules/cjs/loader:1103:14)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1157:10)
+    at Module.load (node:internal/modules/cjs/loader:981:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:822:12)
+    at Module.require (node:internal/modules/cjs/loader:1005:19)
+    at require (node:internal/modules/cjs/helpers:102:18)
+    at Object.<anonymous> (/app/node_modules/undici/lib/web/fetch/index.js:11:5)
+    at Module._compile (node:internal/modules/cjs/loader:1103:14)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1157:10)
+```
+
+そのため、Node.jsがv16.14.2に対応したdiscord.jsにバージョンダウンさせることにした。
+
+1. [NPMJS](https://www.npmjs.com/ "NPMJS")を開いて、discord.jsを検索する。
+2. 古いパッケージから依存関係が問題ないバージョンを確認する。
+3. Glichプロジェクトページの package.jsonを選択
+4. コードを修正（discord.jsのバージョン）
+```
+  "dependencies": {
+    "discord.js": "14.11.0",
+    "@discordjs/builders": "1.8.2",
+    "@discordjs/rest": "2.3.0",
+    "@discordjs/collection": "1.5.3",
+    "querystring": "0.2.1",
+    "express": "^4.21.1",
+    "npm": "^9.9.1"
+  },
+```
 
 ## Glitch / github 連携
 Glitchに記述したコードをGitHubに連携を行い、コードの管理を行う
